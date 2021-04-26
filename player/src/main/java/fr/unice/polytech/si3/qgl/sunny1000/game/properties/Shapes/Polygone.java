@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.sunny1000.game.properties.Shapes;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Polygone extends Shape {
@@ -22,6 +23,16 @@ public class Polygone extends Shape {
         super("polygone");
         this.orientation = orientation;
         this.vertices = vertices;
+    }
+
+    public Point[] getVerticesPosition(Point position){
+        ArrayList<Point> pts=new ArrayList<>();
+        for (Point pt:
+                vertices) {
+            Point k=new Point(pt.getX()+position.getX(),pt.getY()+position.getY());
+            pts.add(k);
+        }
+        return pts.toArray(new Point[]{});
     }
 
     /**
@@ -49,14 +60,6 @@ public class Polygone extends Shape {
         this.orientation = orientation;
     }
 
-    /**
-     *
-     * @param vertices vertics to set
-     */
-
-    public void setVertics(Point[] vertices) {
-        this.vertices = vertices;
-    }
 
     @Override
     public String toString() {

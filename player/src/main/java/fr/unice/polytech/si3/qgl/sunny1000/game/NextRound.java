@@ -91,24 +91,5 @@ public class NextRound {
                 '}';
     }
 
-    /**
-     * this methode calculate the angle of rotation between the direction of the ship and the checkpoint
-     * @see Position
-     * @see Math#abs(int) 
-     * @see Math#tan(double) 
-     * @see Math#atan(double)
-     * @param checkpoint the checkpoint that the ship have to reach
-     * @return
-     */
-    public double calculateAngleRotation(Checkpoint checkpoint){
-        Position shipPosition=this.ship.getPosition();
-        Position checkPointPosition=checkpoint.getPosition();
-        double tangent=(double)(checkPointPosition.getX()-shipPosition.getX())/(checkPointPosition.getY()-shipPosition.getY());
-        double angle=Math.atan(tangent);
-        return angle;
-    }
-
-
-
 
 }

@@ -25,13 +25,6 @@ public class Courant extends Entities {
         return strength;
     }
 
-    /**
-     * @param strength strength to set
-     */
-
-    public void setStrength(double strength) {
-        this.strength = strength;
-    }
 
     @Override
     public String toString() {

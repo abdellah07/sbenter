@@ -90,9 +90,6 @@ public class InitGame {
                 ;
     }
 
-    public void distanceBetweenSailorsAndOar(){
-
-    }
 
 
 }

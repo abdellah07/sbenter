@@ -9,6 +9,7 @@ import fr.unice.polytech.si3.qgl.sunny1000.game.visible.entities.Courant;
 import fr.unice.polytech.si3.qgl.sunny1000.game.visible.entities.Entities;
 import fr.unice.polytech.si3.qgl.sunny1000.game.visible.entities.Recif;
 import fr.unice.polytech.si3.qgl.sunny1000.game.visible.leverage.Wind;
+import org.w3c.dom.css.Rect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -164,8 +165,15 @@ public class Util {
         return Arrays.asList(edges2.clone());
     }
 
+    /**
+     *
+     * @param p
+     * @param distance en degree
+     * @param angle
+     * @return
+     */
     public static Point calculatePoint(Point p,double distance,double angle){
-        angle = toRadians(angle);
+        angle=Math.toRadians(angle);
         double x;
         double y;
         x=p.getX()+distance*cos(angle);
@@ -182,6 +190,28 @@ public class Util {
 
     public static boolean belongsToCirle(Point center, double radius , Point point ){
         return Util.calculateDistance(point, center) <= radius;
+    }
+
+    public static boolean intersectionShipCircle(Ship ship,double shipAngle,Point centre,double raduis){
+        Point minShip=ship.getPosition().toPoint();
+        Point shipDirection=calculatePoint(minShip,80000,shipAngle);
+        Segment segment=new Segment(shipDirection,minShip);
+        return Util.intersectionBetweenSegmentAndCircle(segment,centre,raduis);
+    }
+
+    public static boolean intersectionShipPolygon(Ship ship,Point[] edges,double shipAngle){
+        Point minShip=ship.getPosition().toPoint();
+        Point shipDirection=calculatePoint(minShip,80000,shipAngle);
+        Segment segment=new Segment(shipDirection,minShip);
+        return Util.intersectionBetweenSegmentAndPolygon(segment,edges);
+    }
+
+    public static boolean intersectionShipRectangle(Position shipPosition,double shipAngle,Rectangle rectangle,Position rectanglePosition){
+        Point minShip= shipPosition.toPoint();
+        Point shipDirection=calculatePoint(minShip,80000,shipAngle);
+        Segment segment=new Segment(shipDirection,minShip);
+        Point[] edges = calculateRectangleEdges(rectangle, rectanglePosition).toArray(new Point[]{});
+        return Util.intersectionBetweenSegmentAndRectangle(segment,edges);
     }
 
     /**
@@ -227,5 +257,37 @@ public class Util {
         }
         return detectCollision(collisions);
     }
+
+    public static boolean intersectionBetweenSegmentAndCircle(Segment segment, Point center, double radius){
+        if(belongsToCirle(center, radius, segment.getMax()) || belongsToCirle(center, radius, segment.getMin())) return true;
+        double a = segment.getA();
+        double b = segment.getB();
+        double x0 = center.getX();
+        double y0 = center.getY();
+        double delta = 4*Math.pow((a*b - x0 - a*y0),2) - 4*(a*a + 1 )*(x0*x0 + b*b - 2*b*y0 + y0*y0 - radius*radius);
+        return delta >= 0;
+    }
+
+    public static boolean intersectionBetweenSegmentAndPolygon(Segment segment, Point[] edges){
+        for (int i = 1 ; i < edges.length ; i++){
+            Segment polygonSegment = new Segment(edges[i-1], edges[i]);
+            if (segment.intersection(polygonSegment)){
+                return true;
+            }
+        }
+        Segment polygonSegment = new Segment(edges[edges.length-1], edges[0]);
+        if (segment.intersection(polygonSegment)){
+            return true;
+        }
+        return false;
+    }
+
+
+    public static boolean intersectionBetweenSegmentAndRectangle(Segment segment, Point[] edges){
+        return intersectionBetweenSegmentAndPolygon(segment,edges);
+    }
+
+
+
 }
 

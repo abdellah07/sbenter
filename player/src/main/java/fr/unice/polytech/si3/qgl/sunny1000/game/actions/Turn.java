@@ -24,16 +24,6 @@ public class Turn extends Actions{
         return rotation;
     }
 
-    public void setRotation(double rotation) {
-        if(rotation>=(double)(Math.PI/4)){
-            if (rotation >= 0)
-                this.rotation=(double)(Math.PI/4);
-            else
-                this.rotation=(double)(Math.PI/4)*(-1);
-        }else {
-            this.rotation=rotation;
-        }
-    }
 
     @Override
     public String toString() {

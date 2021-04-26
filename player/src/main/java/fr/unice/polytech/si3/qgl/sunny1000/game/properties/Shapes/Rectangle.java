@@ -54,25 +54,6 @@ public class Rectangle extends Shape {
 
     /**
      *
-     * @param width width to set
-     */
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    /**
-     *
-     * @param height height to set
-     */
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-
-    /**
-     *
      * @param orientation orientation to set
      */
 

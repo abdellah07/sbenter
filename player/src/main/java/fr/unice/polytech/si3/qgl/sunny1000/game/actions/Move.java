@@ -44,21 +44,6 @@ public class Move extends Actions{
                 '}';
     }
 
-    public int getYdistance() {
-        return ydistance;
-    }
-
-    public void setYdistance(int ydistance) {
-        this.ydistance = ydistance;
-    }
-
-    public int getXdistance() {
-        return xdistance;
-    }
-
-    public void setXdistance(int xdistance) {
-        this.xdistance = xdistance;
-    }
 
     public static Point validateMove(int xDistance, int yDistance){
         while (Math.abs(xDistance)+ Math.abs(yDistance)>5){

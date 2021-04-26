@@ -39,22 +39,6 @@ public abstract class Actions {
                 ", type='" + type + '\'';
     }
 
-    /**
-     * @return Id of the sailor in action
-     */
-
-    public int getSailorId() {
-        return sailorId;
-    }
-
-    /**
-     *
-     * @param sailorId sailorId to set
-     */
-
-    public void setSailorId(int sailorId) {
-        this.sailorId = sailorId;
-    }
 
     public String getType() {
         return type;

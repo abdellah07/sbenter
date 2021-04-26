@@ -62,10 +62,6 @@ public class Cockpit implements ICockpit {
 		return json;
 	}
 
-
-	public Captain getCaptain() {
-		return captain;
-	}
 	@Override
 	public List<String> getLogs() {
 		return log;

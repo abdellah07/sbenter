@@ -21,22 +21,6 @@ public class Bateau extends Entities {
     }
 
 
-    /**
-     * @return the value of life
-     */
-
-    public int getLife() {
-        return life;
-    }
-
-    /**
-     * @param life life to set
-     */
-
-    public void setLife(int life) {
-        this.life = life;
-    }
-
     @Override
     public String toString() {
         return  super.toString()+"Bateau{" +

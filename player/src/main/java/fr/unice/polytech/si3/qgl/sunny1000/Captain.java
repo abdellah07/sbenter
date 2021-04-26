@@ -134,35 +134,26 @@ public class Captain {
 
 
     public Entities detectEntity(double shipOrientation){
-        double distanceShipReef = 0;
-        int i=0;
         for (Entities e : externalEntities) {
             if(e instanceof Recif){
                 //distance between reef and the ship
-                    CalculatePath calculatePath = new CalculatePath(ship.getPosition().toPoint(), Math.toRadians(shipOrientation), 5000, new Wind(0,0),0, 0, ship, 5000);
-                    List<Point> points = calculatePath.generateNextPos();
-                    for (Point p:
-                         points) {
                         if(e.getShape() instanceof Circle) {
-                            if (Util.belongsToCirle(e.getPosition().toPoint(), ((Circle) e.getShape()).getRadius(), p)) {
+                            if (Util.intersectionShipCircle(this.ship,shipOrientation,e.getPosition().toPoint(),((Circle) e.getShape()).getRadius())) {
+                                System.out.println("circle");
                                 return e;
                             }
                         }else if(e.getShape() instanceof Polygone){
-                            ArrayList<Point> pts=new ArrayList<>();
-                            for (Point pt:
-                                    ((Polygone) e.getShape()).getVertices()) {
-                                Point k=new Point(pt.getX()+e.getPosition().getX(),pt.getY()+e.getPosition().getY());
-                                pts.add(k);
-                            }
-                            /*if(Util.belongsToPolygon(pts.toArray(new Point[]{}),p)){
+                            Point[] edges = ((Polygone) e.getShape()).getVerticesPosition(e.getPosition().toPoint());
+                            if(Util.intersectionShipPolygon(this.ship,edges,shipOrientation)){
+                                System.out.println("Poly");
                                 return e;
-                            }*/
+                            }
                         }else if(e.getShape() instanceof Rectangle){
-                            if(Util.belongsToRectangle((Rectangle) e.getShape(),e.getPosition(),p)){
+                            if(Util.intersectionShipRectangle(this.ship.getPosition(),shipOrientation, (Rectangle) e.getShape(),e.getPosition())){
+                                System.out.println("rectangle");
                                 return e;
                             }
                         }
-                    }
             }
         }
         return null;
@@ -181,6 +172,7 @@ public class Captain {
             double distanceShipReef=Util.calculateDistance(e.getPosition().toPoint(),ship.getPosition().toPoint());
             Point pe=e.getPosition().toPoint();
             while(true) {
+                System.out.println("here while");
                 angleRight+=2;
                 angleLeft-=2;
 
@@ -189,9 +181,11 @@ public class Captain {
 
                 if(left==null ) {
                     chosenAngle=angleLeft-3;
+                    System.out.println();
                     break;
                 }else if(right==null) {
                     chosenAngle=angleRight+3;
+                    System.out.println();
                     break;
                 }
             }
@@ -220,6 +214,7 @@ public class Captain {
      *This methode return the actions to execute
      */
     public List<Actions> choseActions(){
+        System.out.println("here Action");
         log.add("before  "+Math.toDegrees(ship.getPosition().getOrientation()));
         List<Actions> actions = new ArrayList<>();
         orderToLower=false;
