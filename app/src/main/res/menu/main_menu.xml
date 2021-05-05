@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/demandG"
+        android:iconTint="@color/black"
+        android:title="DEMAND">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/demand"
+                    android:icon="@drawable/icons8_demand_50"
+                    android:title="demand" />
+                <item
+                    android:id="@+id/favorite"
+                    android:icon="@drawable/icons8_wish_list_24"
+                    android:title="favorite" />
+                <item
+                    android:id="@+id/requests"
+                    android:icon="@drawable/icons8_transaction_list_64"
+                    android:title="requests" />
+            </group>
+        </menu>
+
+    </item>
+
+
+    <item
+        android:id="@+id/donner_1"
+        android:title="GIVE">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/give"
+                    android:icon="@drawable/icons8_add_list_24"
+                    android:title="new donation !" />
+                <item
+                    android:id="@+id/myList"
+                    android:icon="@drawable/icons8_list_16"
+                    android:title="my donation list" />
+                <item
+                    android:id="@+id/new_requests"
+                    android:icon="@drawable/icons8_demand_50"
+                    android:title="requests" />
+            </group>
+        </menu>
+
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/stats"
+            android:icon="@drawable/icons8_data_grid_64"
+            android:title="statistics" />
+        <item
+            android:id="@+id/tweet"
+            android:icon="@drawable/osm_ic_follow_me_on"
+            android:title="send a Tweet" />
+    </group>
+</menu>

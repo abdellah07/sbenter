@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "875244540167",
+    "firebase_url": "https://ihm2021-default-rtdb.firebaseio.com",
+    "project_id": "ihm2021",
+    "storage_bucket": "ihm2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875244540167:android:186d60991cb93fb749f5a2",
+        "android_client_info": {
+          "package_name": "com.polytech.ihm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875244540167-tc54k6gr6196jvkp5aahe8qst07ttiil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpXkQU-JcNUZ7sx5XlrmLe4tMDdgPtujY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875244540167-tc54k6gr6196jvkp5aahe8qst07ttiil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
